@@ -1,7 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Dashboard = () => {
-  return <h1>Dashboard</h1>;
+const Dashboard = ({ user }) => {
+  console.log(user);
+  return <h1>Welcome {user.email}, Here Is Your Dashboard</h1>;
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth.currentUser,
+  };
+};
+
+export default connect(mapStateToProps)(Dashboard);
