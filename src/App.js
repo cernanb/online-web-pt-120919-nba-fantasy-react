@@ -7,22 +7,39 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import { checkLoggedIn } from './redux/actions/authActions';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class App extends Component {
+  state = {
+    loading: true,
+  };
+
+  toggleLoading = () => {
+    this.setState({ loading: !this.state.loading });
+  };
+
   componentDidMount() {
-    this.props.checkLoggedIn();
+    this.props.checkLoggedIn(this.toggleLoading);
   }
 
-  checkLoginStatus = () => {};
-
   render() {
+    if (this.state.loading) return <h1>Loading...</h1>;
     return (
       <div className="App">
         <Router>
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route
+              path="/dashboard"
+              render={(props) => {
+                if (this.props.loggedIn) {
+                  return <Dashboard {...props} />;
+                } else {
+                  return <Redirect to="/login" />;
+                }
+              }}
+            />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
           </Switch>
@@ -32,4 +49,10 @@ class App extends Component {
   }
 }
 
-export default connect(null, { checkLoggedIn })(App);
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.auth.loggedIn,
+  };
+};
+
+export default connect(mapStateToProps, { checkLoggedIn })(App);
