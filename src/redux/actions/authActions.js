@@ -54,3 +54,17 @@ export const checkLoggedIn = () => {
       );
   };
 };
+
+export const logout = (history) => {
+  return (dispatch) => {
+    fetch(`http://localhost:3001/logout`, {
+      method: 'DELETE',
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: 'LOGOUT' });
+        history.push('/login');
+      });
+  };
+};
