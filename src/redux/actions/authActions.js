@@ -23,7 +23,7 @@ export const signup = (user, history) => {
 };
 export const login = (user, history) => {
   return (dispatch) => {
-    fetch(`${apiUrl}//sessions`, {
+    fetch(`${apiUrl}/sessions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export const login = (user, history) => {
 
 export const checkLoggedIn = (callback) => {
   return (dispatch) => {
-    fetch(`${apiUrl}//logged_in`, {
+    fetch(`${apiUrl}/logged_in`, {
       credentials: 'include',
     })
       .then((res) => res.json())
@@ -60,7 +60,7 @@ export const checkLoggedIn = (callback) => {
 
 export const logout = (history) => {
   return (dispatch) => {
-    fetch(`${apiUrl}//logout`, {
+    fetch(`${apiUrl}/logout`, {
       method: 'DELETE',
       credentials: 'include',
     })
