@@ -1,6 +1,8 @@
+import {apiUrl} from '../../config'
+
 export const signup = (user, history) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/users`, {
+    fetch(`${apiUrl}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,7 +23,7 @@ export const signup = (user, history) => {
 };
 export const login = (user, history) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/sessions`, {
+    fetch(`${apiUrl}//sessions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +44,7 @@ export const login = (user, history) => {
 
 export const checkLoggedIn = (callback) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/logged_in`, {
+    fetch(`${apiUrl}//logged_in`, {
       credentials: 'include',
     })
       .then((res) => res.json())
@@ -58,7 +60,7 @@ export const checkLoggedIn = (callback) => {
 
 export const logout = (history) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/logout`, {
+    fetch(`${apiUrl}//logout`, {
       method: 'DELETE',
       credentials: 'include',
     })
