@@ -12,19 +12,6 @@ class Navbar extends Component {
   render() {
     return (
       <>
-        <div>
-          <Link to="/">Home</Link>
-          {this.props.loggedIn ? (
-            <>
-              <Link to="/dashboard">Dashboard</Link>
-            </>
-          ) : (
-            <>
-              <Link to="/signup">Signup</Link>
-            </>
-          )}
-        </div>
-
         <nav className="bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
             <div className="flex justify-between h-16">
@@ -42,21 +29,16 @@ class Navbar extends Component {
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:flex">
-                  <a
-                    href="#"
-                    className="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out"
+                  <Link
+                    to="/"
+                    className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent  text-sm font-medium leading-5 text-gray-900 focus:outline-none transition duration-150 ease-in-out"
                   >
-                    Dashboard
-                  </a>
-                  <a
-                    href="#"
-                    className="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"
-                  >
-                    Team
-                  </a>
+                    Home
+                  </Link>
+
                   <Link
                     to="/players"
-                    className="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"
+                    className="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700  focus:outline-none focus:text-gray-700  transition duration-150 ease-in-out"
                   >
                     Players
                   </Link>
