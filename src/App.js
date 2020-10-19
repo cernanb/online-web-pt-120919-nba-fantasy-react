@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import PlayerList from './components/PlayerList';
 import { checkLoggedIn } from './redux/actions/authActions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -25,11 +26,19 @@ class App extends Component {
   render() {
     if (this.state.loading) return <h1>Loading...</h1>;
     return (
-      <div className="App">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Router>
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/players" render={props => {
+              if (this.props.loggedIn) {
+                  return <PlayerList {...props} />;
+              } else {
+                  return <Redirect to="/login" />;
+
+              }
+            }} />
             <Route
               path="/dashboard"
               render={(props) => {
