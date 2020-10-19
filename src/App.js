@@ -26,19 +26,21 @@ class App extends Component {
   render() {
     if (this.state.loading) return <h1>Loading...</h1>;
     return (
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Router>
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/players" render={props => {
-              if (this.props.loggedIn) {
+            <Route
+              path="/players"
+              render={(props) => {
+                if (this.props.loggedIn) {
                   return <PlayerList {...props} />;
-              } else {
+                } else {
                   return <Redirect to="/login" />;
-
-              }
-            }} />
+                }
+              }}
+            />
             <Route
               path="/dashboard"
               render={(props) => {
